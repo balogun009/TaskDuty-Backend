@@ -16,7 +16,7 @@ const createTask = async (req, res) => {
 
   const task = await Task.create({ ...req.body });
 
-  res.status(201).json({ task }, { message: "Task created successfully!" });
+  res.status(201).json( { message: "Task created successfully!" });
 };
 
 const editTask = async (req, res) => {
@@ -58,7 +58,7 @@ const eachTask = async (req, res) => {
     return res.status(400).json({ message: `ID: ${id} is not valid` });
   }
 
-  const task = await Task.findOne({ _id: id });
+  const task = await Task.findOne({ _id: id }, {...req.body});
 
   if (!task) {
     return res.status(404).json({ message: `No Task with ID:${id}` });
